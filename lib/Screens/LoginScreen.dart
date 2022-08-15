@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:marvel/Data/network.dart';
+import 'package:marvel/Firebase/CreateUser.dart';
+import 'package:marvel/Screens/HomScreen.dart';
 import 'package:marvel/utilits/TextField.dart';
 
 
@@ -91,6 +94,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   Expanded(
                     child: InkWell(
                       onTap: (){
+                        ApiData().getData();
+                          Users(Email: _Email.text,Password: _Password.text).CreateUser();
+                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
+
                         setState(() {
                           _loginClick=!_loginClick;
                         });
@@ -117,18 +124,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   Expanded(
                       child:InkWell(
                         onTap: (){
-                         setState(() {
-                           _signUpClick=!_signUpClick;
-                         });
+
                         },
                         child: Container(
                           height: 50,
-                          child: Center(child:_signUpClick? Text("Sign Up ", style: TextStyle(
-                              color: _signUpClick?null:Colors.black
-                            ),):
-                          CircularProgressIndicator(color: Colors.red,)
+                          child: Center(child:_signUpClick? Text("Sign Up "):
+                            CircularProgressIndicator(color: Colors.red,)
                           ),
-                          color:_signUpClick?null:Color.fromRGBO(0, 0, 200,2) ,
+
 
                         ),
                       )

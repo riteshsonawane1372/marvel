@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:marvel/Responsive/Responisve.dart';
+import 'package:marvel/Screens/HomScreen.dart';
 import 'package:marvel/Screens/LoginScreen.dart';
 import 'package:marvel/Responsive/MobileScreen.dart';
 import 'package:marvel/Responsive/WebScreen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:marvel/utilits/BoxContainer.dart';
 
-void main() {
+
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     theme: ThemeData.dark().copyWith(
@@ -19,7 +25,7 @@ class Marvel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LoginScreen();
+    return HomeScreen();
   }
 }
 
